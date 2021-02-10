@@ -1,0 +1,114 @@
+# This is a basic workflow to help you get started with Actions
+
+name: CI
+
+# Controls when the action will run. 
+on:
+  # Triggers the workflow on push or pull request events but only for the main branch
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  # This workflow contains a single job called "build"
+  build:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v2
+
+      # Runs a single command using the runners shell
+      - name: Run a one-line script
+        run: echo Hello, world!
+
+      # Runs a set of commands using the runners shell
+      - name: Run a multi-line script
+        run: |
+          echo Add other actions to build,
+          echo test, and deploy your project.
+- name: Social post
+  # You may pin to the exact commit or the version.
+  # uses: jsmrcaga/action-social-post@ac6876fa9d169e94de1c6dfcc65837c4bb877e5f
+  uses: jsmrcaga/action-social-post@v1.1.1
+  with:
+    # What should be sent? (only text enabled)
+    MESSAGE_TEMPLATE: # default is I published a new release to {{ platform_name }}: v${{ github.ref }}!
+    # Should post to twitter?
+    TWITTER_ENABLED: 
+    # Twitter Consumer Key from your App
+    TWITTER_CONSUMER_KEY: # optional, default is 
+    # Twitter Consumer Secret from your App
+    TWITTER_CONSUMER_SECRET: # optional, default is 
+    # Twitter API Key from your App
+    TWITTER_API_KEY: # optional, default is 
+    # Twitter API Secret from your App
+    TWITTER_API_SECRET: # optional, default is 
+    # Should post to Discord?
+    DISCORD_ENABLED: 
+    # Discord webhook to post message
+    DISCORD_WEBHOOK: # optional, default is 
+    # Should post to Slack?
+    SLACK_ENABLED: 
+    # Slack bot token
+    SLACK_OAUTH_TOKEN: # optional, default is 
+    # The username the bot will have when sending the message
+    SLACK_BOT_NAME: # optional
+    # The channel the bot should post to (the # is required)
+    SLACK_CHANNEL: # default is #general
+    - name: Manage Profiles
+  # You may pin to the exact commit or the version.
+  # uses: emvaldes/manage-profiles@dc7b42ef7c95c6b394f6e1fe83ba436ff4837d39
+  uses: emvaldes/manage-profiles@v1.0
+  with:
+    # GitHub Personal Token
+    github-personal-token: # optional
+    # Organization Administrator
+    organization-admin: # optional
+    # Organization Name/ID
+    organization-name: # optional
+    # Service Account Group
+    service-account-group: # optional
+    # Service Account User
+    service-account-user: # optional
+    - name: Setup Java JDK
+  uses: actions/setup-java@v1.4.3
+  with:
+    # The Java version to make available on the path. Takes a whole or semver Java version, or 1.x syntax (e.g. 1.8 => Java 8.x). Early access versions can be specified in the form of e.g. 14-ea, 14.0.0-ea, or 14.0.0-ea.28
+    java-version: 
+    # The package type (jre, jdk, jdk+fx)
+    java-package: # optional, default is jdk
+    # The architecture (x86, x64) of the package.
+    architecture: # optional, default is x64
+    # Path to where the compressed JDK is located. The path could be in your source repository or a local path on the agent.
+    jdkFile: # optional
+    # ID of the distributionManagement repository in the pom.xml file. Default is `github`
+    server-id: # optional, default is github
+    # Environment variable name for the username for authentication to the Apache Maven repository. Default is $GITHUB_ACTOR
+    server-username: # optional, default is GITHUB_ACTOR
+    # Environment variable name for password or token for authentication to the Apache Maven repository. Default is $GITHUB_TOKEN
+    server-password: # optional, default is GITHUB_TOKEN
+    # Path to where the settings.xml file will be written. Default is ~/.m2.
+    settings-path: # optional
+    # GPG private key to import. Default is empty string.
+    gpg-private-key: # optional
+    # Environment variable name for the GPG private key passphrase. Default is $GPG_PASSPHRASE.
+    gpg-passphrase: # optional
+    - name: Cache
+  uses: actions/cache@v2.1.4
+  with:
+    # A list of files, directories, and wildcard patterns to cache and restore
+    path: 
+    # An explicit key for restoring and saving the cache
+    key: 
+    # An ordered list of keys to use for restoring the cache if no cache hit occurred for key
+    restore-keys: # optional
+    # The chunk size used to split up large files during upload, in bytes
+    upload-chunk-size: # optional
